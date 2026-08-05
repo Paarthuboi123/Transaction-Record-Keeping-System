@@ -215,6 +215,7 @@ def invoice(tid):
     if not tx:
         flash('Transaction not found', 'danger')
         return redirect(url_for('transactions'))
+        
     return render_template('invoice.html', tx=tx)
 
 if __name__ == '__main__':
