@@ -61,7 +61,7 @@ tr:nth-child(even) {
   border-radius: 18px;
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
   padding: 36px 30px;
-  right: 50px;
+  right: 175px;
 }
 .auth-card h2 {
   margin-top: 0;
@@ -116,5 +116,13 @@ tr:nth-child(even) {
   color: #0f172a;
   margin-bottom: 20px;
   bottom: 200px;
-  left: 250px;
+  left: 300px;
+}
+.bob {
+  position:relative;
+  font-size: 2rem;
+  color: #D4a617;
+  margin-bottom: 20px;
+  bottom: 300px;
+  left: 105px;
 }
