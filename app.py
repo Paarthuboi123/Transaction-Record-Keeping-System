@@ -160,6 +160,7 @@ def edit_transaction(tid):
             'UPDATE transactions SET counterparty=?, item=?, transaction_type=?, amount=?, date=?, description=? WHERE id=?',
             (counterparty, item, transaction_type, amount_value, date_value, description, tid),
         )
+        
         flash('Transaction updated', 'success')
         return redirect(url_for('transactions'))
     return render_template('add_edit_transaction.html', action='Edit', tx=tx)
@@ -215,7 +216,7 @@ def invoice(tid):
     if not tx:
         flash('Transaction not found', 'danger')
         return redirect(url_for('transactions'))
-        
+
     return render_template('invoice.html', tx=tx)
 
 if __name__ == '__main__':
