@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Daily Report for {{ date }}</h2>
+<p>Total transactions: {{ transactions|length }}</p>
+<p>Total amount: {{ '%.2f'|format(total) }}</p>
+<a href="/reports/daily/download?date={{ date }}">Download CSV</a>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Counterparty</th>
+      <th>Item</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Created By</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for t in transactions %}
+    <tr>
+      <td>{{ t.id }}</td>
+      <td>{{ t.date }}</td>
+      <td>{{ t.counterparty }}</td>
+      <td>{{ t.item }}</td>
+      <td>{{ t.transaction_type }}</td>
+      <td>{{ '%.2f'|format(t.amount) }}</td>
+      <td>{{ t.description }}</td>
+      <td>{{ t.created_by }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

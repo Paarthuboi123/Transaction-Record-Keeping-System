@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Transactions</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date</th>
+      <th>Counterparty</th>
+      <th>Item</th>
+      <th>Type</th>
+      <th>Amount</th>
+      <th>By</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for t in transactions %}
+    <tr>
+      <td>{{ t.id }}</td>
+      <td>{{ t.date }}</td>
+      <td>{{ t.counterparty }}</td>
+      <td>{{ t.item }}</td>
+      <td>{{ t.transaction_type }}</td>
+      <td>{{ '%.2f'|format(t.amount) }}</td>
+      <td>{{ t.created_by }}</td>
+      <td>
+        {% if session.role == 'owner' %}
+          <a href="/invoices/{{t.id}}">Invoice</a>
+          | <a href="/transactions/edit/{{t.id}}">Edit</a>
+          <form action="/transactions/delete/{{t.id}}" method="post" style="display:inline">
+            <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+          </form>
+        {% else %}
+          <a href="/invoices/{{t.id}}">Invoice</a>
+        {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

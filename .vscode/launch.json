@@ -1,0 +1,14 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open login_page.html",
+            "file": "c:\\Users\\26arypa\\OneDrive - Good News Lutheran College\\Applied\\SAT\\login_page.html"
+        }
+    ]
+}

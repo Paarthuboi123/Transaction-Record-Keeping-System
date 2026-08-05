@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transaction App</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    {% if session.user_id %}
+    <nav>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/transactions">Transactions</a>
+      {% if session.role == 'owner' %}
+      <a href="/transactions/add">Add Transaction</a>
+      <a href="/reports/daily">Daily Reports</a>
+      {% endif %}
+      <a href="/logout">Logout</a>
+    </nav>
+    {% endif %}
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for cat, msg in messages %}
+            <li class="{{cat}}">{{msg}}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

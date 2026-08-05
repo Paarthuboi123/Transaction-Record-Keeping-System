@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ session.username }}</h2>
+<p>Role: {{ session.role|capitalize }}</p>
+<div class="dashboard-cards">
+  <div class="card">
+    <h3>Quick Actions</h3>
+    <ul>
+      <li><a href="/transactions">View Transactions</a></li>
+      {% if session.role == 'owner' %}
+      <li><a href="/transactions/add">Add Transaction</a></li>
+      <li><a href="/reports/daily">Daily Reports</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

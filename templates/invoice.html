@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Invoice #{{ tx.id }}</h2>
+<p>Date: {{ tx.date }}</p>
+<p>Buyer: {{ tx.buyer }}</p>
+<p>Item: {{ tx.item }}</p>
+<p>Amount: {{ '%.2f'|format(tx.amount) }}</p>
+<p>Created by: {{ tx.created_by }}</p>
+<button onclick="window.print()">Print</button>
+{% endblock %}

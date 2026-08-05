@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="wi dth=device-width, initial-scale=1.0" />
+  <title>DG Events Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root{
+      --navy:#09193b;
+      --navy2:#07142f;
+      --gold:#cda33b;
+      --gold2:#e0c77a;
+      --cream:#f7efe5;
+      --card:#fffaf3;
+      --text:#1d2240;
+      --muted:#7b7b7b;
+      --line:#eadfc9;
+    }
+
+    html, body { height: 100%; }
+
+    body{
+      background: #f6efe6;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page{
+      width: 1200px;
+      height: 768px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      background: #f6efe6;
+    }
+
+    .left{
+      position: relative;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(205,163,59,.18), transparent 18%),
+        linear-gradient(180deg, #0a1b41 0%, #07132f 100%);
+      color: #fff;
+      padding: 32px 28px;
+    }
+
+    .ornament{
+      position: absolute;
+      color: var(--gold2);
+      font-size: 54px;
+      opacity: .95;
+      line-height: 1;
+    }
+
+    .ornament.top-left{ top: 10px; left: 10px; transform: rotate(-10deg); }
+    .ornament.top-right{ top: 12px; left: 66%; transform: rotate(8deg); font-size: 34px; }
+
+    .brand{
+      text-align: center;
+      margin-top: 52px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .dg{
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-size: 92px;
+      font-weight: 600;
+      line-height: .85;
+      letter-spacing: 1px;
+    }
+
+    .events{
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 53px;
+      letter-spacing: 3px;
+      margin-top: -2px;
+    }
+
+    .divider{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin: 10px 0 12px;
+    }
+
+    .divider span{
+      width: 58px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold2), transparent);
+    }
+
+    .divider i{
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      display:inline-block;
+    }
+
+    .tagline{
+      font-size: 15px;
+      color: rgba(255,255,255,.82);
+      letter-spacing: .3px;
+    }
+
+    .scene{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 300px;
+      background:
+        radial-gradient(circle at 16% 60%, rgba(255,255,255,.18), transparent 4%),
+        radial-gradient(circle at 6% 55%, rgba(255,255,255,.16), transparent 3%),
+        radial-gradient(circle at 32% 58%, rgba(255,255,255,.16), transparent 3%);
+      overflow: hidden;
+    }
+
+    .candle{
+      position:absolute;
+      bottom: 120px;
+      width: 6px;
+      height: 160px;
+      border-radius: 4px;
+       
+    }
