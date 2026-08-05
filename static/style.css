@@ -54,12 +54,14 @@ tr:nth-child(even) {
   padding: 20px;
 }
 .auth-card {
+  position: relative;
   width: min(420px, 100%);
   background: #ffffff;
   border: 1px solid rgba(148, 163, 184, 0.25);
   border-radius: 18px;
   box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
   padding: 36px 30px;
+  right: 50px;
 }
 .auth-card h2 {
   margin-top: 0;
@@ -107,4 +109,12 @@ tr:nth-child(even) {
 }
 .auth-form button:hover {
   background: #3730a3;
+}
+.wel {
+  position:relative;
+  font-size: 2rem;
+  color: #0f172a;
+  margin-bottom: 20px;
+  bottom: 200px;
+  left: 250px;
 }
