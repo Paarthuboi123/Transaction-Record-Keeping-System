@@ -5,9 +5,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import io
 import csv
 from datetime import datetime, date
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 BASE_DIR = os.path.dirname(__file__)
 DB_PATH = os.path.join(BASE_DIR, 'data.db')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+SENDGRID_FROM_EMAIL = os.environ.get('SENDGRID_FROM_EMAIL', 'noreply@dgevnts.com')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET', 'dev-secret-change-me')
@@ -36,6 +40,34 @@ def execute_db(query, args=()):
     cur = db.execute(query, args)
     db.commit()
     return cur.lastrowid
+
+
+def send_invoice_email(tx, recipient):
+    if not SENDGRID_API_KEY:
+        raise ValueError('SendGrid API key is not configured')
+
+    subject = f"DG Events Invoice #{tx['id']}"
+    html_content = f"""
+    <h2>Invoice #{tx['id']}</h2>
+    <p><strong>Date:</strong> {tx['date']}</p>
+    <p><strong>Counterparty:</strong> {tx['counterparty']}</p>
+    <p><strong>Item:</strong> {tx['item']}</p>
+    <p><strong>Type:</strong> {tx['transaction_type']}</p>
+    <p><strong>Amount:</strong> ${tx['amount']:.2f}</p>
+    <p><strong>Description:</strong> {tx['description'] or 'N/A'}</p>
+    <p><strong>Created by:</strong> {tx['created_by']}</p>
+    """
+
+    message = Mail(
+        from_email=SENDGRID_FROM_EMAIL,
+        to_emails=recipient,
+        subject=subject,
+        html_content=html_content,
+    )
+
+    client = SendGridAPIClient(SENDGRID_API_KEY)
+    client.send(message)
+
 
 def login_required(f):
     from functools import wraps

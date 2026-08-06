@@ -1,35 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Daily Report for {{ date }}</h2>
-<p>Total transactions: {{ transactions|length }}</p>
-<p>Total amount: {{ '%.2f'|format(total) }}</p>
-<a href="/reports/daily/download?date={{ date }}">Download CSV</a>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Date</th>
-      <th>Counterparty</th>
-      <th>Item</th>
-      <th>Type</th>
-      <th>Amount</th>
-      <th>Description</th>
-      <th>Created By</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for t in transactions %}
-    <tr>
-      <td>{{ t.id }}</td>
-      <td>{{ t.date }}</td>
-      <td>{{ t.counterparty }}</td>
-      <td>{{ t.item }}</td>
-      <td>{{ t.transaction_type }}</td>
-      <td>{{ '%.2f'|format(t.amount) }}</td>
-      <td>{{ t.description }}</td>
-      <td>{{ t.created_by }}</td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
+<div class="page-heading">
+  <div>
+    <h2 class="page-title">Daily Report</h2>
+    <p class="page-subtitle">Review the day's transactions and export a CSV file for records.</p>
+  </div>
+  <a class="btn btn-primary" href="/reports/daily/download?date={{ date }}">Download CSV</a>
+</div>
+<div class="metric-grid">
+  <div class="metric-card">
+    <p class="eyebrow">Date</p>
+    <div class="summary-value">{{ date }}</div>
+  </div>
+  <div class="metric-card">
+    <p class="eyebrow">Transactions</p>
+    <div class="summary-value">{{ transactions|length }}</div>
+  </div>
+  <div class="metric-card">
+    <p class="eyebrow">Total Amount</p>
+    <div class="summary-value">${{ '%.2f'|format(total) }}</div>
+  </div>
+</div>
+<div class="table-card">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Counterparty</th>
+        <th>Item</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Created By</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for t in transactions %}
+      <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.date }}</td>
+        <td>{{ t.counterparty }}</td>
+        <td>{{ t.item }}</td>
+        <td>{{ t.transaction_type }}</td>
+        <td>{{ '%.2f'|format(t.amount) }}</td>
+        <td>{{ t.description }}</td>
+        <td>{{ t.created_by }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

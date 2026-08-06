@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Invoice #{{ tx.id }}</h2>
-<p>Date: {{ tx.date }}</p>
-<p>Buyer: {{ tx.buyer }}</p>
-<p>Item: {{ tx.item }}</p>
-<p>Amount: {{ '%.2f'|format(tx.amount) }}</p>
-<p>Created by: {{ tx.created_by }}</p>
-<button onclick="window.print()">Print</button>
+{% extends 'base.html' %}
+{% block content %}
+<div class="invoice-card">
+  <div class="invoice-header">
+    <div>
+      <p class="eyebrow">Invoice</p>
+      <h2 class="page-title">Invoice #{{ tx.id }}</h2>
+      <p class="page-subtitle">Official record for {{ tx.counterparty }}</p>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="card">
+      <p><strong>Date:</strong> {{ tx.date }}</p>
+      <p><strong>Counterparty:</strong> {{ tx.counterparty }}</p>
+      <p><strong>Item:</strong> {{ tx.item }}</p>
+    </div>
+    <div class="card">
+      <p><strong>Amount:</strong> ${{ '%.2f'|format(tx.amount) }}</p>
+      <p><strong>Type:</strong> {{ tx.transaction_type }}</p>
+      <p><strong>Created by:</strong> {{ tx.created_by }}</p>
+    </div>
+  </div>
+  <div class="invoice-actions">
+    <button class="btn btn-secondary" onclick="window.print()">Print</button>
+  </div>
+</div>
+{% endblock %}
 {% endblock %}

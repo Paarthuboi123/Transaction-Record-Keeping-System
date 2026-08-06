@@ -1,19 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>{{ action }} Transaction</h2>
-<form method="post" class="transaction-form">
-  <label>Date<br><input name="date" type="date" value="{{ tx['date'] if tx else '' }}"></label><br>
-  <label>Buyer / Source<br><input name="counterparty" value="{{ tx['counterparty'] if tx else '' }}"></label><br>
-  <label>Item<br><input name="item" value="{{ tx['item'] if tx else '' }}"></label><br>
-  <label>Type<br>
-    <select name="transaction_type">
-      <option value="sale" {% if tx and tx['transaction_type'] == 'sale' %}selected{% endif %}>Sale</option>
-      <option value="purchase" {% if tx and tx['transaction_type'] == 'purchase' %}selected{% endif %}>Purchase</option>
-      <option value="other" {% if tx and tx['transaction_type'] == 'other' %}selected{% endif %}>Other</option>
-    </select>
-  </label><br>
-  <label>Amount<br><input name="amount" type="number" min="1" step="0.01" value="{{ tx['amount'] if tx else '' }}"></label><br>
-  <label>Description<br><textarea name="description">{{ tx['description'] if tx else '' }}</textarea></label><br>
-  <button type="submit">{{ action }}</button>
-</form>
+<div class="page-heading">
+  <div>
+    <h2 class="page-title">{{ action }} Transaction</h2>
+    <p class="page-subtitle">Capture complete transaction details with a clear, structured form.</p>
+  </div>
+</div>
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <h2 class="page-title">{{ action }} Transaction</h2>
+    <p class="page-subtitle">Capture complete transaction details with a clear, structured form.</p>
+  </div>
+</div>
+<div class="card form-card">
+  <form method="post" class="transaction-form">
+    <div class="form-grid">
+      <label>Date
+        <input name="date" type="date" value="{{ tx['date'] if tx else '' }}">
+      </label>
+      <label>Buyer / Source
+        <input name="counterparty" value="{{ tx['counterparty'] if tx else '' }}" placeholder="Enter counterparty name">
+      </label>
+      <label>Item
+        <input name="item" value="{{ tx['item'] if tx else '' }}" placeholder="Enter item or service">
+      </label>
+      <label>Type
+        <select name="transaction_type">
+          <option value="sale" {% if tx and tx['transaction_type'] == 'sale' %}selected{% endif %}>Sale</option>
+          <option value="purchase" {% if tx and tx['transaction_type'] == 'purchase' %}selected{% endif %}>Purchase</option>
+          <option value="other" {% if tx and tx['transaction_type'] == 'other' %}selected{% endif %}>Other</option>
+        </select>
+      </label>
+    </div>
+    <label>Amount
+      <input name="amount" type="number" min="1" step="0.01" value="{{ tx['amount'] if tx else '' }}" placeholder="0.00">
+    </label>
+    <label>Description
+      <textarea name="description" placeholder="Optional notes or reference details">{{ tx['description'] if tx else '' }}</textarea>
+    </label>
+    <button class="btn btn-primary" type="submit">{{ action }}</button>
+  </form>
+</div>
+{% endblock %}
 {% endblock %}

@@ -3,32 +3,50 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Transaction App</title>
+    <title>DG Events | Transaction Management</title>
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
     {% if session.user_id %}
-    <nav>
-      <a href="/dashboard">Dashboard</a>
-      <a href="/transactions">Transactions</a>
-      {% if session.role == 'owner' %}
-      <a href="/transactions/add">Add Transaction</a>
-      <a href="/reports/daily">Daily Reports</a>
-      {% endif %}
-      <a href="/logout">Logout</a>
-    </nav>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="/dashboard">
+          <span class="brand-mark">DG</span>
+          <span>
+            <strong>DG Events</strong>
+            <small>Transaction Management</small>
+          </span>
+        </a>
+        <nav class="top-nav">
+          <a href="/dashboard">Dashboard</a>
+          <a href="/transactions">Transactions</a>
+          {% if session.role == 'owner' %}
+          <a href="/transactions/add">Add Transaction</a>
+          <a href="/reports/daily">Daily Reports</a>
+          {% endif %}
+          <a href="/logout">Logout</a>
+        </nav>
+      </div>
+    </header>
     {% endif %}
-    <main>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <ul class="flashes">
-          {% for cat, msg in messages %}
-            <li class="{{cat}}">{{msg}}</li>
-          {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
-      {% block content %}{% endblock %}
+    <main class="page-shell">
+      <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for cat, msg in messages %}
+              <li class="{{cat}}">{{msg}}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
     </main>
+    {% if session.user_id %}
+    <footer class="site-footer">
+      <div class="container">DG Events • Secure operations portal</div>
+    </footer>
+    {% endif %}
   </body>
 </html>
